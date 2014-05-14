@@ -50,16 +50,16 @@ class kdNode:
 
             
 def main():
-    T = kdTree(); #Initialize a new kdTree instances. 
+    T = kdTree(2); #Initialize a new kdTree instances. 
     print T.root;
-    T.kdInsert(T.root, (5, 4, 1), 0);
+    T.kdInsert(T.root, (5, 4), 0);
     print T.root.kList;
-    T.kdInsert(T.root, (1, 4, 2), 0);
+    T.kdInsert(T.root, (1, 4), 0);
     print T.root.LOSON.kList;
-    T.kdInsert(T.root, (6, 7, 4), 0);
+    T.kdInsert(T.root, (6, 7), 0);
     print T.root.HISON.kList;
-    T.kdInsert(T.root, (3, 6, 4), 0);
-    print T.root.LOSON.HISON;
+    T.kdInsert(T.root, (3, 6), 0);
+    print T.root.LOSON;
 
 if __name__ == 'main':
     main();
