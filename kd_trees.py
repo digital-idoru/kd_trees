@@ -65,12 +65,14 @@ def main():
     T.kdInsert(T.root, (1, 4), 0);
     T.kdInsert(T.root, (6, 7), 0);
     T.kdInsert(T.root, (3, 6), 0);
+    T.kdInsert(T.root, (4, 2), 0);
 
     #print tree structure 
     print T.root.kList;
     print T.root.HISON.kList;
     print T.root.LOSON.kList;
     print T.root.LOSON.HISON.kList;
+    print T.root.LOSON.LOSON.kList;
 
 if __name__ == 'main':
     main();
