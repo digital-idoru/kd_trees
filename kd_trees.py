@@ -13,6 +13,7 @@ class kdTree:
     def newNode(self, d, v):
         tmp = kdNode(None, None, d);
         tmp.kList = v;
+        print "Inserting new node with keys " + str(tmp.kList) + " and discrim: " + str(tmp.DISCRIM); #debug 
         return tmp;
 
     #Insert a node in the tree using Bently's algorithm. 
@@ -21,14 +22,21 @@ class kdTree:
             self.root = self.newNode(i, point);
             return;
         elif node is None:
+            print 'Inserting new new node!'; #debug
             return self.newNode(i, point);
         else:       
             if node.getDiscrimKey() < point[i]:
-                i += 1 % self.k;
+                print "Discrim key is: " + str(node.getDiscrimKey()); #debug 
+                i = (i + 1) % self.k;
+                print "The Discrim is: " + str(i); #debug 
                 node.HISON = self.kdInsert(node.HISON, point, i);
+                return node;
             else:
-                i+= 1 % self.k; 
-                node.LOSON = self.kdInsert(node.LOSON, point, i); 
+                print "Discrim key is: " + str(node.getDiscrimKey()); #debug 
+                i = (i + 1) % self.k; 
+                print "The Discrim is: " + str(i); #Debug 
+                node.LOSON = self.kdInsert(node.LOSON, point, i);
+                return node;
 
 #A class the represents a kd-tree node. 
 #Each node contains a left and right child pointer,
@@ -50,16 +58,19 @@ class kdNode:
 
             
 def main():
-    T = kdTree(2); #Initialize a new kdTree instances. 
-    print T.root;
+
+    #Initialize a new kdTree instance and insert some test nodes. 
+    T = kdTree(2);
     T.kdInsert(T.root, (5, 4), 0);
-    print T.root.kList;
     T.kdInsert(T.root, (1, 4), 0);
-    print T.root.LOSON.kList;
     T.kdInsert(T.root, (6, 7), 0);
-    print T.root.HISON.kList;
     T.kdInsert(T.root, (3, 6), 0);
-    print T.root.LOSON;
+
+    #print tree structure 
+    print T.root.kList;
+    print T.root.HISON.kList;
+    print T.root.LOSON.kList;
+    print T.root.LOSON.HISON.kList;
 
 if __name__ == 'main':
     main();
