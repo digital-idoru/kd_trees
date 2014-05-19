@@ -13,7 +13,6 @@ class kdTree:
     def newNode(self, d, v):
         tmp = kdNode(None, None, d);
         tmp.kList = v;
-        print "Inserting new node with keys " + str(tmp.kList) + " and discrim: " + str(tmp.DISCRIM); #debug 
         return tmp;
 
     #Insert a node in the tree using Bently's algorithm. 
@@ -22,19 +21,14 @@ class kdTree:
             self.root = self.newNode(i, point);
             return;
         elif node is None:
-            print 'Inserting new new node!'; #debug
             return self.newNode(i, point);
         else:       
             if node.getDiscrimKey() < point[i]:
-                print "Discrim key is: " + str(node.getDiscrimKey()); #debug 
                 i = (i + 1) % self.k;
-                print "The Discrim is: " + str(i); #debug 
                 node.HISON = self.kdInsert(node.HISON, point, i);
                 return node;
             else:
-                print "Discrim key is: " + str(node.getDiscrimKey()); #debug 
                 i = (i + 1) % self.k; 
-                print "The Discrim is: " + str(i); #Debug 
                 node.LOSON = self.kdInsert(node.LOSON, point, i);
                 return node;
 
