@@ -4,6 +4,7 @@
 
 #A classwrapper for a kd-Tree. 
 #Contains root object, an instance of the kdNode class.  
+#Contains functions for inserting a node into the K-d tree 
 class kdTree:
     def __init__(self, dim):
         self.root = None; #Start the tree empty 
@@ -31,6 +32,12 @@ class kdTree:
                 i = (i + 1) % self.k; 
                 node.LOSON = self.kdInsert(node.LOSON, point, i);
                 return node;
+
+    #Function to perform an exact match query on the k-d tree. Bently does not reccomend using kd-trees if the only purpose is for exact match queries.
+    #This function is thus included for the sake of completeness. 
+    def exactMatch(self, node, key):
+        if node.getDiscrimKey != key[node.DISCRIM]: 
+            return 0;
 
 #A class the represents a kd-tree node. 
 #Each node contains a left and right child pointer,
